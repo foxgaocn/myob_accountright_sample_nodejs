@@ -1,0 +1,15 @@
+{
+  "name": "myobapi-sample",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "3.2.4",
+    "jade": "*",
+    "connect": "*",
+    "oauth": "*"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.2.x"
+  }
+}

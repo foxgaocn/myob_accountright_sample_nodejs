@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  h1= title
+  #content
+  ul
+    li 
+      p First your user must login 
+        a(href="https://secure.myob.com/oauth2/account/authorize?client_id=#{client_id}&redirect_uri=#{redirect_uri}&response_type=code&scope=CompanyFile") here
+        |  to allow the application to view their company files, see 
+        a(href="http://developer.myob.com/docs/read/getting_started/Authentication") http://developer.myob.com/docs/read/getting_started/Authentication
+    
+    li  
+      p If they allow access then the MYOB OAuth server will redirect them back to the registered 
+        b REDIRECT_URI 
+        | with a code. In this case it is 
+        b #{redirect_uri} 
+        | and is handled by 
+        i /routes/authorized.js
+        
+    li
+      p 
+        b authorized.js 
+        | - uses the OAuth NODEJS package (
+        i npm install oauth
+        | ) to acquire an 
+        b access_token
+        | , a 
+        b refresh_token
+        | ; it also includes an  
+        b expires_in
+        |  field that describes in seconds how long the 
+        b access_token
+        |  is valid until the 
+        b refresh_token
+        |  needs to be used to acquire a new 
+        b access_token
+  
