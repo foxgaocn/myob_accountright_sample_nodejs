@@ -1,0 +1,10 @@
+// - http://naltatis.github.io/jade-syntax-docs/
+extends layout
+
+block content
+  h1= title
+  #content
+  each kw in data
+    li
+      p
+        | #{kw.Name} - #{kw.ProductVersion}
