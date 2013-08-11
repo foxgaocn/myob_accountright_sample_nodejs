@@ -1,71 +1,304 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Myob accountright sample nodejs by MYOB-Technology</title>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>node.js sample for MYOB AccountRight Live API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Myob accountright sample nodejs</h1>
-        <p>NodeJS Sample</p>
+  <!-- sort out IE -->
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 
-        <p class="view"><a href="https://github.com/MYOB-Technology/myob_accountright_sample_nodejs">View the Project on GitHub <small>MYOB-Technology/myob_accountright_sample_nodejs</small></a></p>
+  <link rel="canonical" href="http://developer.myob.com/" />
+  
+  <!-- stylesheets -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,400italic' rel='stylesheet' type='text/css'>
 
+  <!-- scripts -->
+  <script src="http://code.jquery.com/jquery.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+  <style>
+body, h1, h2, h3 {
+  font-family: Ubuntu, arial, sans-serif;
+  font-weight: 300;
+}
 
-        <ul>
-          <li><a href="https://github.com/MYOB-Technology/myob_accountright_sample_nodejs/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/MYOB-Technology/myob_accountright_sample_nodejs/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/MYOB-Technology/myob_accountright_sample_nodejs">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+p {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  line-height: 28px;
+  font-size: 18px;
+}
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+li {
+  line-height: 24px;
+  font-size: 16px;
+}
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+/* side bar */
+#sidebar {
+  width: 330px;
+  position:fixed;
+  z-index:1;
+  padding: 10px;
+}
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+#sidebar .logoTop, #sidebar .quickLinks {
+  width: 300px;
+  margin: 0 auto;
+  text-align: left;
+  display: block;
+  padding-top: 10px;
+}
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+#sidebar h3 {
+  color: rgb(91, 192, 222);
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(227, 227, 227);
+  font-size: 18px;
+  padding-top: 20px;
+}
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+#sidebar .apiLogo img {
+  width: 300px;
+}
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+#sidebar .btn {
+  min-width: 250px;
+  font-weight: 300;
+  text-align: left
+}
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+#sidebar .logoBottom {
+  width: 300px;
+  margin: 0 auto;
+  text-align: left;
+  display: block;
+  margin-top: 125px;
+}
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+#sidebar .logoBottom p {
+  margin-top: 10px;
+  padding-bottom: 20px;
+  font-size: 12px;
+  color: rgb(190, 190, 190);
+}
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+/* Page Body */
+.col-lg-9 {
+  padding: 0;
+}
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+#page {
+  position:relative;
+  margin-left: 350px;
+  border-left:1px solid rgb(227, 227, 227);
+  min-height: 900px;
+  padding-top: 75px;
+  padding-bottom: 75px;
+  z-index: 10;
+  background-color: rgb(255,255,255);
+}
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/MYOB-Technology">MYOB-Technology</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+#page article {
+  margin: 0;
+  padding: 0;
+}
+
+#page article pre {
+  border: none;
+  border-radius: 0;
+  margin-left: -30px;
+  padding: 25px 15px 25px 50px;
+}
+
+#page .post {
+  padding: 30px;
+  max-width: 650px;
+  border-bottom: 1px solid rgb(227, 227, 227);
+}
+
+#page time {
+  margin: 10px 10px 0 0;
+  float: right;
+}
+
+#page .link {
+  margin: -1px 0;
+  padding: 30px;
+  background-color: rgb(246, 246, 246);
+}
+
+#page .photo {
+  padding: 30px;
+  max-width: 650px;
+}
+
+#page .photo img {
+  max-width: 600px;
+}
+
+#page .photo h2 {
+  font-size: 18px;
+}
+
+#page .quote {
+  margin: -1px 0;
+  padding: 30px;
+  background-image: linear-gradient(135deg, rgb(85, 85, 85) 0%, rgb(64, 64, 64) 100%);
+}
+
+#page .quote blockquote {
+  max-width: 600px;
+  color: rgb(223, 222, 224);
+  border-left-color: rgb(113, 168, 74);
+}
+
+#page .quote blockquote p {
+  line-height: 28px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+#page .quote blockquote a {
+  color: rgb(113, 168, 74);
+}
+
+#page .quote p.source, #page .quote p.source a {
+  margin: -40px 0 0 0;
+  max-width: 550px;
+  font-size: 15px;
+  font-weight: 300;
+  color: white;
+  text-align: right;
+}
+
+  </style>
+</head>
+<body>
+<div class="colourBar"></div>
+<header id="sidebar" class="col-lg-3">
+  <div class="logoTop">
+    <h1><a href="http://developer.myob.com" class="apiLogo"><img src="img/myobapi-logo.png" /></a></h1>
+    <blockquote>
+      node.js sample for AccountRight Live API
+    </blockquote>
+  </div>
+  <div class="quickLinks">
+    <h3>Project</h3>
+    <div class="btn-group-vertical">
+      <a href="https://github.com/MYOB-Technology/myob_accountright_sample_nodejs/zipball/master" type="button" class="btn btn-info">Download ZIP file</a>
+      <a href="https://github.com/MYOB-Technology/myob_accountright_sample_nodejs/tarball/master" type="button" class="btn btn-info">Download TAR Ball</a>
+      <a href="https://github.com/MYOB-Technology/myob_accountright_sample_nodejs" type="button" class="btn btn-info">View on GitHub</a>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+    <h3>AccountRight Live API</h3>
+    <div class="btn-group-vertical">
+      <a href="http://developer.myob.com/api/accountright/api-overview/getting-started/" type="button" class="btn btn-info">Getting Started</a>
+      <a href="http://developer.myob.com/api/accountright/v2/" type="button" class="btn btn-info">v2 Documentation</a>
+    </div>
+  </div>
+</header>
+<section id="page" class="col-lg-9">
+  <!-- begin article -->
+  <article id="[ID]" class="post">
+    <h1>node.js sample app</h1>
+<p>AccountRight Live API</p>
+
+<h2>node.js sample</h2>
+<p>This sample will step you through connecting to and fetching data from the MYOB AccountRight Live API.</p>
+<p>The setup steps are:</p>
+<ul>
+  <li>Download (or checkout) the project</li>
+  <li>Run <code>npm install</code></li>
+  <li>Enter your api credentials</li>
+  <li>Run <code>node app.js</code></li>
+</ul>
+<h2>Your api credentials</h2>
+<p>You can apply for and will receive API keys from the developers.myob.com website. Once you have these simply update the following items:</p>
+<blockquote>
+  set <code>MYOBAPI_SAMPLE_CLIENTKEY</code> to your API Key<br />
+  set <code>MYOBAPI_SAMPLE_CLIENTSECRET</code> to your API secret
+</blockquote>
+
+  </article>
+  <!-- end article -->
+</section>
+<script type="text/javascript">
+//<![CDATA[
+var _gaq = _gaq || [];
+var pluginUrl = (('https:' == document.location.protocol) ?
+   'https://ssl.' : 'http://www.') +
+   'google-analytics.com/plugins/ga/inpage_linkid.js';
+_gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+_gaq.push(['_setAccount', 'UA-2310317-40']);
+_gaq.push(['_trackPageview']);
+ 
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+//]]>
+</script>
+</body>
 </html>
+<!--
+
+Still looking at the code? How about the MYOB API TEAM logo in ASCII art?
+
+                                                                                
+                                           MMMMM                                
+                                           MMMMM         MMM                    
+                                           MMMMMM       MMMMM                   
+                                 MM        MMMMMMM    MMMMMMM                   
+                               MMMMMM      MMMMMMMMMMMMMMMMM                    
+                                MMMMMMMMMMMMMMMMMMMMMMMMMMMM                    
+                                MMMMMMMMMMMMMMMMMMMMMMMMMMMM                    
+                                 MMMMMMMMMMMMMMMMMMMMMMMMMMMM    MMMM           
+                                  MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM          
+                                  MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM          
+                                 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM            
+                         MMMMMMMMMMMMMMMMMMM        MMMMMMMMMMMMMM              
+                         MMMMMMMMMMMMMMMMMM           MMMMMMMMMMM               
+                          MMMMMMMMMMMMMMMM            MMMMMMMMMMM               
+                             MMMMMMMMMMMMM             MMMMMMMMMMM              
+                                MMMMMMMMMM             MMMMMMMMMMMMMMM          
+                                MMMMMMMMMMM           MMMMMMMMMMMMMMMMMM        
+                               MMMMMMMMMMMMM         MMMMMMMMMMMMMMMMMMM        
+                             MMMMMMMMMMMMMMMMM     MMMMMMMMMMMMMMMMMMMM         
+                            MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM                 
+                           MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM                  
+                            MMMMM   MMMMMMMMMMMMMMMMMMMMMMMMMMM                 
+                                      MMMMMMMMMMMMMMMMMMMMMMMMMM                
+                                     MMMMMMMMMMMMMMMMMMMMMMMMMMMM               
+                                     MMMMMMMMMMMMMMMMMM    MMMMMMM              
+                             MMM    MMMMMMM    MMMMMMM       MMMM               
+                 MMM        MMMMM   MMMMMM      MMMMMM                          
+                MMMMMM     MMMMMM   MMMM        MMMMMM                          
+                MMMMMMM   MMMMMMM                MMMMM                          
+                 MMMMMMMMMMMMMMMM                 M                             
+                 MMMMMMMMMMMMMMMMM   MMMMM                                      
+                 MMMMMMMMMMMMMMMMMMMMMMMMMM                                     
+         MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM                                     
+        MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM                                       
+        MMMMMMMMMMMMMMMM     MMMMMMMMMM                                         
+           MMMMMMMMMMMM       MMMMMMMM                                          
+              MMMMMMMM        MMMMMMMM                                          
+              MMMMMMMMM       MMMMMMMMMMM                                       
+              MMMMMMMMMM     MMMMMMMMMMMMMMM                                    
+            MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM                                    
+          MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM                                    
+         MMMMMMMMMMMMMMMMMMMMMMMMMMM                                            
+          MMMMM   MMMMMMMMMMMMMMMMM                                             
+                    MMMMMMMMMMMMMMMM                                            
+                    MMMMMM   MMMMMMM                                            
+                   MMMMMM      MMMMMM                                           
+                   MMMMM        MMMM                                            
+                    MMMM 
+
+Go on - hit us up @MYOBapi and let us know you found our hidden logo :)
+
+-->
