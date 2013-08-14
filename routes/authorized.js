@@ -1,6 +1,8 @@
- var OAuth = require('oauth'); 
 
 exports.authorized = function(req, res){
+  var OAuth = require('oauth'); 
+
+
   if (req.query['error'] === 'access_denied') {
     res.redirect('/');
   }
