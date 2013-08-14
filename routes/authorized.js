@@ -1,5 +1,5 @@
-var OAuth = require('OAuth');
-
+ var OAuth = require('OAuth');
+ 
 exports.authorized = function(req, res){
   if (req.query['error'] === 'access_denied') {
     res.redirect('/');
@@ -7,7 +7,7 @@ exports.authorized = function(req, res){
   else {
     res.app.settings['code'] = req.query['code'];
     
-    var OAuth2 = OAuth.OAuth2;
+    var OAuth2 = OAuth.OAuth2; 
     var oauth2 = new OAuth2(res.app.settings['myob credentials'].clientId,
        res.app.settings['myob credentials'].clientSecret, 
        'https://secure.myob.com/', 
