@@ -1,9 +1,9 @@
-// common settings 
-var port = process.env.PORT || 8888;
+var port = process.env.PORT || 8899;
+console.log("port is " + port);
 
-var clientId = process.env.MYOBAPI_SAMPLE_CLIENTKEY || '<<key>>';
-var clientSecret = process.env.MYOBAPI_SAMPLE_CLIENTSECRET || '<<secret>>';
-var redirectUri = process.env.MYOBAPI_REDIRECTURI || 'http://localhost:8888/authorized';
+var clientId = process.env.MYOBAPI_SAMPLE_CLIENTKEY || 'zwbmgxyzjrtxcnw3yam92ah6';
+var clientSecret = process.env.MYOBAPI_SAMPLE_CLIENTSECRET || 'J6yGzqxJJWXp2RMBujdzxWwM';
+var redirectUri = process.env.MYOBAPI_REDIRECTURI || 'http://http://mighty-thicket-3094.herokuapp.com//authorized';
  
 var express = require('express')
   , routes = require('./routes')
