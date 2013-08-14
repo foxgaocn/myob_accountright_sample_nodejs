@@ -1,4 +1,4 @@
-var OAuth = require('OAuth');
+var OAuth = require('../node_modules/oauth/index.js');
 
 exports.authorized = function(req, res){
   if (req.query['error'] === 'access_denied') {
