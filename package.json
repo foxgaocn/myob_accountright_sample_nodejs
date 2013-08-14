@@ -2,7 +2,7 @@
   "name": "myobapi-sample",
   "version": "0.0.1",
   "dependencies": {
-    "oauth": "0.9.10",
+    "OAuth": "0.9.10",
     "express": "3.3.1",
     "jade": "*",
     "connect": "*"
